@@ -85,3 +85,19 @@ def friendsList(usr):
         return False
     else:
         return friendsString.split('-')
+
+def adduserstory(usr, msg):
+    profile = ProfileTb.objects.get(username=usr)
+    userstoryv = profile.userstory
+    userstoryv = userstoryv + '-' + msg
+    profile.userstory = userstoryv
+    profile.save()
+    return userstoryv
+
+def userstory(usr):
+    profile = ProfileTb.objects.get(username=usr)
+    userstring = profile.userstory
+    if userstring is None:
+        return False
+    else:
+        return userstring.split('-')

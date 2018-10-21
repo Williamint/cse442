@@ -126,13 +126,13 @@ class PhotoTb(models.Model):
 
 
 class ProfileTb(models.Model):
-    username = models.CharField(max_length=45)
+    username = models.CharField(unique=True, max_length=45)
     password = models.CharField(max_length=45)
     userstory = models.CharField(max_length=45)
-    firstname = models.CharField(db_column='Firstname', max_length=45)  # Field name made lowercase.
-    lastname = models.CharField(db_column='Lastname', max_length=45)  # Field name made lowercase.
+    firstname = models.CharField(max_length=45)
+    lastname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
-    education = models.CharField(db_column='Education', max_length=45)  # Field name made lowercase.
+    education = models.CharField(max_length=45)
     dateofbirth = models.CharField(max_length=45)
     friends = models.CharField(max_length=45, blank=True, null=True)
     dater = models.DateTimeField(auto_now_add=True)

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'userpage.apps.UserpageConfig',
     'userprofile.apps.UserprofileConfig',
     'friends.apps.FriendsConfig',
+    'message.apps.MessageConfig',
+    'upload.apps.UploadConfig'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,8 @@ TEMPLATES = [
                     '/cse442/signup/templates',
                     '/cse442/userprofile/templates',
                     '/cse442/friends/templates',
+                    '/cse442/message/templates',
+                    '/cse442/upload/templates',
                 ],
 
         'APP_DIRS': True,

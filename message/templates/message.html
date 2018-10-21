@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Developers - Chat Window</title>
+    <script src="https://unpkg.com/vue"></script>
+
+<style>
+  /* Main body */
+  body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  /* Sender's message box */
+  .user {
+    border: 2px solid #DEDEDE;
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  /* Receiver's message box */
+  .receiver {
+    color: #FFFFFF;
+    border-color: #000CCC;
+    background-color: #1E90FF;
+  }
+  /* Clean the message box */
+  .user::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  /* Sender's images on the left */
+  .user img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  /* Receiver's images on the right */
+  .user img.receiver {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+  /* Sender's name on the left */
+  .text-left {
+    float: left;
+    color: #999999;
+  }
+  /* Sender's message time on the right */
+  .text-right {
+    float: right;
+    color: #AAAAAA;
+  }
+  /* Receiver's name time on the left */
+  .text-left-receiver {
+    float: left;
+    color: #FFFFFF;
+  }
+  /* Receiver's name on the right */
+  .text-right-receiver {
+    float: right;
+    color: #FFFFFF;
+  }
+  /* Message input box */
+  .form-box textarea {
+    width: 96%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #F1F1F1;
+    resize: none;
+    min-height: 50px;
+    font-size: 10pt;
+  }
+  /* Send button layout */
+  .form-box .button {
+    background-color: #008000;
+    color: #FFFFFF;
+    padding: 16px 20px;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 49.7%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    font-size: 10pt;
+  }
+  /* End Conversation button layout */
+  .form-box .end {
+    background-color: #FF0000;
+    color: #FFFFFF;
+    padding: 16px 20px;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 49.7%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    font-size: 10pt;
+  }
+  /* Add People button layout */
+  .add {
+    background-color: #008000;
+    color: #FFFFFF;
+    padding: 10px 10px;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60px;
+    margin-bottom:10px;
+    opacity: 0.8;
+    font-size: 10pt;
+  }
+  /* Close Window button layout */
+  .close {
+    background-color: #FF0000;
+    color: #FFFFFF;
+    padding: 10px 10px;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60px;
+    margin-bottom:10px;
+    opacity: 0.8;
+    font-size: 10pt;
+  }
+  /* Friend list layout */
+  .list {
+      color: #FFFFFF;
+      padding: 0 18px;
+      border: 2px solid #DEDEDE;
+      border-radius: 5px;
+      width: 10%;
+      display: none;
+      overflow: hidden;
+      background-color: #008000;
+  }
+</style>
+</head>
+
+<body>
+  <div id="vue-app">
+      {% load staticfiles %}
+  <script src="app.js"></script>
+      <center><h1>Chat Window</h1></center>
+
+      <button class="close" onclick="closeWindow()" style="float:right;">Close</button>
+
+              <button class="add" style="float:right;">Add</button>
+                <div class="list" style="float:right;">
+                  <p>Noomar</p>
+                  <p>Ding</p>
+                  <p>Jaswinder</p>
+                  <p>Weibin</p>
+                </div>
+
+                <br/><br/><br/><br/><br/>
+
+  <div class="user">
+    <img src="{% static 'avatar1.png' %}" alt="Avatar" style="width:100%;">
+    <p>Hey man. Are you done with the assignment?</p>
+    <span class="text-left">Alex</span>
+    <span class="text-right">9:20AM</span>
+  </div>
+
+  <div class="user receiver">
+    <img src="{% static 'avatar2.png' %}" alt="Avatar" class="receiver" style="width:100%;">
+    <p>Kind of. I finished all the questions, except the last one.</p>
+    <span class="text-left-receiver">10:21AM</span>
+    <span class="text-right-receiver">Noomar</span>
+  </div>
+
+  <div class="user">
+    <img src="{% static 'avatar1.png' %}" alt="Avatar" style="width:100%;">
+    <p>Yeah, that's the question I'm having problem too.</p>
+    <span class="text-left">Alex</span>
+    <span class="text-right">12:05PM</span>
+  </div>
+
+  <center>Alex added Ding to the conversation.</center>
+
+  <div class="user">
+    <img src="{% static 'avatar1.png' %}" alt="Avatar" style="width:100%;">
+    <p>Hey Ding. Did you finish the assignment?</p>
+    <span class="text-left">Alex</span>
+    <span class="text-right">10:15AM</span>
+  </div>
+
+  <div class="user receiver">
+    <img src="{% static 'avatar3.png' %}" alt="Avatar" class="receiver" style="width:100%;">
+    <p>Yes. I can help you after the class, if you want.</p>
+    <span class="text-left-receiver">12:14PM</span>
+    <span class="text-right-receiver">Ding</span>
+  </div>
+
+  <div class="user">
+    <img src="{% static 'avatar1.png' %}" alt="Avatar" style="width:100%;">
+    <p>Wow, thanks man! That would be great!</p>
+    <span class="text-left">Alex</span>
+    <span class="text-right">12:35PM</span>
+  </div>
+
+  <div class="user receiver">
+    <img src="{% static 'avatar2.png' %}" alt="Avatar" class="receiver" style="width:100%;">
+    <p>I'm sorry, I don't think I can make it. I have a meeting after the class.</p>
+    <span class="text-left-receiver">12:40PM</span>
+    <span class="text-right-receiver">Noomar</span>
+  </div>
+
+  <div class="user receiver">
+    <img src="{% static 'avatar3.png' %}" alt="Avatar" class="receiver" style="width:100%;">
+    <p>Okay. No problem.</p>
+    <span class="text-left-receiver">1:10PM</span>
+    <span class="text-right-receiver">Ding</span>
+  </div>
+
+  <div class="chat" id="form">
+    <form class="form-box" method="get">
+      <h2>Message</h2>
+      <input type="file">
+      <textarea placeholder="Type message" name="msg" ></textarea>
+      <button type="submit" class="button">Send Message</button>
+      <input type="submit" class="end" value="End Conversation" name = "end">
+    </form>
+  </div>
+
+  <script>
+  var add = document.getElementsByClassName("add");
+  var i;
+  for (i = 0; i < add.length; i++) {
+    add[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var list = this.nextElementSibling;
+        if (list.style.display === "block") {
+          list.style.display = "none";
+        }
+        else {
+          list.style.display = "block";
+        }
+      });
+    }
+  </script>
+  </div>
+</body>
+</html>

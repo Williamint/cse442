@@ -13,6 +13,7 @@ class User:
     lastname = ''
     userstory = ''
     friend_listn = ''
+    msg_list = ''
 
     def setusername(self, uname):
         global username
@@ -41,6 +42,13 @@ class User:
     def setemail(self, mail):
         global email
         email = mail
+
+    def setmsg_list(self, msg):
+        global msg_list
+        msg_list = msg
+
+    def getmsg_list(self):
+        return msg_list
 
     def seteducation(self, edu):
         global education
@@ -86,10 +94,10 @@ class User:
         self.setdobirth(self, dictInfo['dateofbirth'])
 
     def packInfo(self):
-        databasecheck.editProfile(self.getusername(self), self.getfirstname(self), self.getlastname(self), self.getemail(self), self.getdobirth(self), self.geteducation(self))
+        print(databasecheck.editProfile(self.getusername(User), self.getfirstname(User), self.getlastname(User), self.getemail(User), self.getdobirth(User), self.geteducation(User)))
+        pass
 
     def setfriend_list(self, f_list):
-        print(f_list)
         global friend_listn
         if f_list is False:
             friend_listn = ''
@@ -103,20 +111,29 @@ class User:
         self.setusername(self, uname)
         self.exactInfo(self, databasecheck.homepgView(uname))
         self.setfriend_list(self, databasecheck.friendsList(uname))
+        self.setmsg_list(self, databasecheck.userstory(uname))
 
-    def saveInfo(self, uname, firstn, lastn, email, dob, edu):
-        self.setusername(self, uname)
+    def saveInfo(self, firstn, lastn, email, dob, edu):
         self.setfirstname(self, firstn)
         self.setlastname(self, lastn)
         self.setemail(self, email)
         self.setdobirth(self, dob)
         self.seteducation(self, edu)
         self.packInfo(self)
+        pass
 
     def clearInfo(self):
-        return True
-
-
+        self.setfirstname(self, '')
+        self.setlastname(self, '')
+        self.setemail(self, '')
+        self.setdobirth(self, '')
+        self.seteducation(self, '')
+        self.setmsg_list(self, '')
+        self.setfriend_list(self, '')
+        self.setnickname(self, '')
+        self.setuserstory(self, '')
+        self.setusername(self, '')
+        pass
 
 
 

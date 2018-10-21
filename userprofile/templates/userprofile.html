@@ -46,10 +46,6 @@ a {
           <input type = "text" name="lastn" value="{{ lastna }}"/>
         </p>
         <p>
-          <label>User Name</label>
-          <input type = "text" name="uname" value="{{ usname }}"/>
-        </p>
-        <p>
           <label>Email ID</label>
             <input type = "text" name="email" value="{{ emailv }}"/>
         </p>
@@ -64,7 +60,7 @@ a {
         <input type="submit"  class = "button" value="Save" name = "save">
         <input type="submit"  class = "button" value="Cancel" name = "cancel">
     </form>
-
+    <p>{{ errormsg }}</p>
   </div>
 
 <script>

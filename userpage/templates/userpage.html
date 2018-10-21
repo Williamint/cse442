@@ -66,8 +66,6 @@ color: #aaa;
       {% load staticfiles %}
 <img class="photo" src="{% static 'avatar1.png' %}" alt = "img"/>
       <h1>{{ nickname }}</h1>
-  <p class="font">Friends          Image</p>
-  <p class="number">42                0</p>
       <form method="get">
           <input type="submit" tag="button" class = "button" value="Message" name="msg">
           <input type="submit" tag="button" class = "button" value="Upload" name="load">
@@ -75,10 +73,13 @@ color: #aaa;
           <input type="submit" tag="button" class = "button" value="Friends" name="friend">
           <input type="submit" tag="button" class = "button" value="Sign Out" name="sigt">
       </form>
-<form class="form-box">
+      {% for c in msg_lists %}
+        <p>{{ c }}</p>
+        {% endfor %}
+<form class="form-box" method="get">
    <h3>Story</h3>
-   <textarea placeholder="Whats on your mind" name="msg" required></textarea>
-   <button type="submit" class="button">Share</button>
+   <input type="text" name="msgbox"><br>
+   <input type="submit" class="button" name="share" value="Share">
    <router-link to="/home" tag="button" class="button">Cancel</router-link>
   </form>
   </div>

@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import HttpResponseRedirect
 from library.usermodel import User
+from library import databasecheck
 
 
 class UserPageView(TemplateView):
@@ -25,7 +26,16 @@ def index(request):
             return HttpResponseRedirect('/userprofile/')
         elif request.GET.get('friend'):
             return HttpResponseRedirect('/friend_list/')
+        elif request.GET.get('msg'):
+            return HttpResponseRedirect('/message/')
+        elif request.GET.get('load'):
+            return HttpResponseRedirect('/upload/')
+        elif request.GET.get('share'):
+            databasecheck.adduserstory(User.getusername(User), request.GET['msgbox'])
+            User.setmsg_list(User, databasecheck.userstory(User.getusername(User)))
+            return render(request, 'userpage.html', {'msg_lists': User.getmsg_list(User)})
         else:
-            return render(request, 'userpage.html', {'nickname': User.getusername(User)})
+            return render(request, 'userpage.html', {'nickname': User.getusername(User),
+                                                     'msg_lists': User.getmsg_list(User)})
 
 

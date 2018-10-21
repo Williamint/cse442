@@ -1,6 +1,7 @@
 import string
 from library import databasecheck
 from library.usermodel import User
+import re
 
 class Check:
 
@@ -95,8 +96,7 @@ class Check:
             else:
                 return True
 
-
-    def checkdateofbirth(birth):
+    def checkdateofbirth(self, birth):
         month = int(birth[0:2])
         day = int(birth[2:4])
         year = int(birth[4:8])
@@ -118,11 +118,14 @@ class Check:
             return False
         if month == 2 and day == 29 and ((year % 4 != 0 or year % 100 == 0) or (year % 400 != 0)):
             return False
-
         return True
 
-    def checkemail(email):
-        return True
+    def checkemail(self, email):
+        while "@" and "." not in email:
+            return False
+        else:
+            email_pattern = re.search("(^[a-z0-9A-Z-.]+\@[a-z0-9A-Z-.]+\.[a-zA-Z0-9-.])", email)
+            return bool(email_pattern)
 
     def checkhomepage(self, uname, pword):
         global error
@@ -151,9 +154,18 @@ class Check:
     def geterror(self):
         return error
 
+    def checkeditpage(self, emailv, birthv):
+        global error
+        print('I am Here!!!!!!!!!!!!!!!!!!!!!!!')
+        if self.checkemail(Check, emailv) and self.checkdateofbirth(Check, birthv):
+            return True
+        else:
+            error = 'You have invalid input'
+            return False
+
     def checksignuppage(self,uname,pword,email,birth):
         global error
-        if self.checkusername(uname) and self.checkpassword(pword) and self.checkemail(email) and self.checkdateofbirth(birth):
+        if self.checkusername(uname) and self.checkpassword(pword) and self.checkemail(Check,email) and self.checkdateofbirth(Check, birth):
             if databasecheck.checkUsrName(uname) is False:
                 return True
             else:
