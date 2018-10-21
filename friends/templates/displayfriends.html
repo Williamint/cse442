@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>My Friend List</h1>
+{% for friend in friend_list %}
+<p>{{ friend }}</p>
+{% endfor %}
+
+<form method="get">
+    <input type="text" name = "search">
+    <input type="submit" name = "addfriend" value="Add Friend"><br>
+    <input type="submit" name="bth" value="Back to User Page">
+</form>
+</body>
+</html>
